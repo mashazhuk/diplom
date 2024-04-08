@@ -8,7 +8,7 @@
             </div>
             <div v-for="(lesson, idx) in lessons" :key="idx">
                 <div class="content" @click="openModal(lesson)">
-                    <p class="lesson-name">{{ lesson.name }}</p>
+                    <p class="lesson-name">{{ lesson.lesson_name }}</p>
                 </div>
                 <eventModal v-if="showModal" @close="showModal = false" :show="showModal" :lesson="selectedLesson"></eventModal>
             </div>

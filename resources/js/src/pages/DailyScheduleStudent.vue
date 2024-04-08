@@ -1,9 +1,10 @@
 <template>
-  <WeekCalendar :lessons="myLessons"/>
+  <WeekCalendar :lessons="lessons.value"/>
 </template>
 
 <script>
 import WeekCalendar from '../components/WeekCalendarComponent.vue';
+import axios from 'axios';
 
 export default {
   components: {
@@ -11,19 +12,18 @@ export default {
   },
   data() {
     return {
-      myLessons: [
-        {
-          name: 'OOP',
-          place: 1234562,
-          password: 'Gehq232'
-        },
-        {
-          name: 'Such movy',
-          place: 738253,
-          password: 'JfKdg237'
-        }
-      ]
+      lessons: []
+    };
+  },
+  mounted() {
+    axios.get('/api/lessons')
+      .then(response => {
+        this.lessons.value = response.data.data;
+      })
+      .catch(error => {
+        console.error(error);
+      });
+      console.log(this.lessons);
   }
-}
-}
+  }
 </script>

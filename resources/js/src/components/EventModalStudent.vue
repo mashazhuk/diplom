@@ -14,12 +14,12 @@ export default {
     <div v-if="show" class="modal-mask">
       <div class="modal-container">
         <div class="modal-header">
-          <h1 name="header">{{ lesson.name }}</h1>
+          <h1 name="header">{{ lesson.lesson_name }}</h1>
         </div>
 
         <div class="modal-body">
-          <p name="body">{{ lesson.place }}</p>
-          <p>{{ lesson.password }}</p>
+          <p name="body">{{ lesson.conf_id }}</p>
+          <p>{{ lesson.conf_pass }}</p>
         </div>
 
         <div class="modal-footer">
