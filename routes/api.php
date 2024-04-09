@@ -21,3 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resources([
     'lessons' => \App\Http\Controllers\LessonController::class,
 ]);
+
+// Route::resources([
+//     'lessonsByDate' => \App\Http\Controllers\LessonController::class, 'getLessonsByDate'
+// ]);

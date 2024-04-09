@@ -29,6 +29,7 @@ export default {
         openModal(lesson) {
             this.selectedLesson = lesson;
             this.showModal = true;
+            console.log(this.selectedLesson)
         }
     }
 }

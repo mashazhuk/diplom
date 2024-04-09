@@ -6,7 +6,7 @@
                 <p class="weekday">{{ day.toLocaleString('uk-UA', {weekday: 'short'})}}</p>
                 <h3 class="day">{{ day.getDate() }}</h3>
             </div>
-            <WeekLesson :lessons="lessons.value"/>
+            <WeekLesson :lessons="lessonsByDate[day.toISOString().substring(0, 10)] || []"/>
         </div>
     </div>
 </template>
@@ -23,12 +23,11 @@ export default {
             return {                
                 week: this.getWeek(),
                 month: this.getMonthName(),
-                showModal: false,
-                lessons: []
+                lessonsByDate: []
             }
         },
         mounted() {
-            this.getLessons();
+            this.getLessonsByDate();
         },
         methods: {
             getWeek() {
@@ -47,14 +46,16 @@ export default {
                 let month = date.toLocaleString('uk-UA', { month: 'long' });
                 return month;
             },
-            getLessons() {
+            getLessonsByDate() {
                 axios.get('/api/lessons')
                     .then(response => {
-                        this.lessons.value = response.data.data;
+                        this.lessonsByDate = response.data;
+                        console.log(this.lessonsByDate);
                     })
                     .catch(error => {
                         console.error(error);
                     });
+                    
             }
         }
     }

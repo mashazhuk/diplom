@@ -5,7 +5,7 @@
         <router-link class="nav-link" to="/">Головна</router-link>
       </li>
       <li class="nav-item">
-        <router-link class="nav-link" to="/daily-sch-student">Розклад учня на день</router-link>
+        <router-link class="nav-link" to="/week-sch-student">Розклад учня на день</router-link>
       </li>
       <li class="nav-item">
         <router-link class="nav-link" to="/daily-sch-teacher">Розклад викладача на день</router-link>
@@ -14,15 +14,6 @@
   </header>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-    setup() {
-        
-    },
-})
-</script>
 
 <style lang="less" scoped>
 </style>

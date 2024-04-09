@@ -1,14 +1,3 @@
-<script>
-export default {
-    name: 'eventModal',
-    props: {
-        lesson: Object,
-        show: Boolean
-    }
-}
-
-</script>
-
 <template>
   <Transition name="modal">
     <div v-if="show" class="modal-mask">
@@ -18,8 +7,8 @@ export default {
         </div>
 
         <div class="modal-body">
-          <p name="body">{{ lesson.conf_id }}</p>
-          <p>{{ lesson.conf_pass }}</p>
+          <p name="body">{{ lesson.conference_id }}</p>
+          <p>{{ lesson.conference_password }}</p>
         </div>
 
         <div class="modal-footer">
@@ -32,6 +21,17 @@ export default {
     </div>
   </Transition>
 </template>
+
+<script>
+export default {
+    name: 'eventModal',
+    props: {
+        lesson: Object,
+        show: Boolean
+    }
+}
+
+</script>
 
 <style>
 .modal-mask {
