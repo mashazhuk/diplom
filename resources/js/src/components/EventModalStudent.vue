@@ -9,6 +9,7 @@
         <div class="modal-body">
           <p name="body">{{ lesson.conference_id }}</p>
           <p>{{ lesson.conference_password }}</p>
+          <p>{{ lesson.start_time }}</p>
         </div>
 
         <div class="modal-footer">

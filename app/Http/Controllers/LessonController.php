@@ -10,12 +10,30 @@ use Carbon\Carbon;
 class LessonController extends Controller
 {
     public function index(Request $request) {
-        // return LessonResource::collection(Lesson::all());
+        return LessonResource::collection(Lesson::all());
+    }
+
+    public function getLessonsByDate() {
         $lessons = Lesson::all();
         $lessonsByDate = $lessons->groupBy(function ($item) {
             return Carbon::parse($item->start_time)->format('Y-m-d');
+        })->map(function ($lessonsOnSameDate) {
+            return $lessonsOnSameDate->sortBy(function ($lesson) {
+                return Carbon::parse($lesson->start_time)->format('H:i:s');
+            }) -> values();
         });
 
         return response()->json($lessonsByDate);
     }
+
+    // public function sortedLessons() {
+    //     $lessonsByDate = $lessons->groupBy(function ($item) {
+    //         return Carbon::parse($item->start_time)->format('Y-m-d');
+    //     })->map(function ($lessonsOnSameDate) {
+    //         return $lessonsOnSameDate->sortBy(function ($lesson) {
+    //             return Carbon::parse($lesson->start_time)->format('H:i:s');
+    //         });
+    //     });
+        
+    // }
 }

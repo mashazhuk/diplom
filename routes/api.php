@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\LessonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resources([
-    'lessons' => \App\Http\Controllers\LessonController::class,
+    'lessons' => LessonController::class,
 ]);
 
-// Route::resources([
-//     'lessonsByDate' => \App\Http\Controllers\LessonController::class, 'getLessonsByDate'
-// ]);
+Route::get('lessonsByDate', [LessonController::class, 'getLessonsByDate']);

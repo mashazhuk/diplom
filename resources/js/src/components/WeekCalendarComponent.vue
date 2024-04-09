@@ -47,7 +47,7 @@ export default {
                 return month;
             },
             getLessonsByDate() {
-                axios.get('/api/lessons')
+                axios.get('/api/lessonsByDate')
                     .then(response => {
                         this.lessonsByDate = response.data;
                         console.log(this.lessonsByDate);
