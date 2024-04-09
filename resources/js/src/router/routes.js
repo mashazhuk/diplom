@@ -1,5 +1,5 @@
 import Home from "@/pages/Home.vue";
-import DailyScheduleStudent from "@/pages/DailyScheduleStudent.vue";
+import WeekScheduleStudent from "@/pages/WeekScheduleStudent.vue";
 import DailyScheduleTeacher from "@/pages/DailyScheduleTeacher.vue";
 
 const routes = [
@@ -9,8 +9,8 @@ const routes = [
     },
     
     {
-        path: '/daily-sch-student',
-        component: DailyScheduleStudent
+        path: '/week-sch-student',
+        component: WeekScheduleStudent
     },
 
     {

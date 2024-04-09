@@ -6,35 +6,29 @@
                 <p class="weekday">{{ day.toLocaleString('uk-UA', {weekday: 'short'})}}</p>
                 <h3 class="day">{{ day.getDate() }}</h3>
             </div>
-            <div v-for="(lesson, idx) in lessons" :key="idx">
-                <div class="content" @click="openModal(lesson)">
-                    <p class="lesson-name">{{ lesson.lesson_name }}</p>
-                </div>
-                <eventModal v-if="showModal" @close="showModal = false" :show="showModal" :lesson="selectedLesson"></eventModal>
-            </div>
+            <WeekLesson :lessons="lessons.value"/>
         </div>
     </div>
 </template>
 
 <script>
-import eventModal from './EventModalStudent.vue';
+import WeekLesson from './WeekLesson.vue';
+
 export default {
         components: {
-            eventModal
+            WeekLesson
         },
         name: 'WeekCalendar',
         data() {
-            return {
-                lessonStatus: false,
-                selectedLesson: {},
+            return {                
                 week: this.getWeek(),
                 month: this.getMonthName(),
-                showModal: false
+                showModal: false,
+                lessons: []
             }
         },
-
-        props: {
-            lessons: Array,
+        mounted() {
+            this.getLessons();
         },
         methods: {
             getWeek() {
@@ -45,6 +39,7 @@ export default {
                     let day = new Date(current.setDate(first + i));
                     week.push(day);
                 }
+                console.log(week);
                 return week;
             },
             getMonthName() {
@@ -52,9 +47,14 @@ export default {
                 let month = date.toLocaleString('uk-UA', { month: 'long' });
                 return month;
             },
-            openModal(lesson) {
-                this.selectedLesson = lesson;
-                this.showModal = true;
+            getLessons() {
+                axios.get('/api/lessons')
+                    .then(response => {
+                        this.lessons.value = response.data.data;
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
             }
         }
     }
@@ -79,12 +79,6 @@ export default {
 
 .dayName {
     border-bottom: 1px solid grey;
-}
-
-.content {
-    background-color: blue;
-    color: white;
-    cursor: pointer;
 }
 
 p {
