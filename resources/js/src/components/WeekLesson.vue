@@ -1,12 +1,16 @@
 <template>
     <div v-for="(lesson, idx) in lessons" :key="idx">
-        <div class="content" @click="openModal(lesson)">
-            <p class="lesson-name">{{ lesson.lesson_name }}</p>
-        </div>
-    <eventModal v-if="showModal" @close="showModal = false" :show="showModal" :lesson="selectedLesson"></eventModal>
+        <v-btn @click="openModal(lesson)" class="btn-lesson">
+            <span class="lesson-name">{{ lesson.lesson_name }}</span>
+            <div class=" time flex-column">
+                <span>{{ transformTime(lesson.start_time) }}</span>
+                <span>{{ transformTime(lesson.end_time) }}</span>
+            </div>
+        </v-btn>
     </div>
+    <eventModal @close="dialog = false" :dialog="dialog" :lesson="selectedLesson"></eventModal>
 </template>
-
+    
 <script>
 import eventModal from './EventModalStudent.vue';
 export default {
@@ -17,7 +21,7 @@ export default {
     data() {
         return {
             selectedLesson: {},
-            showModal: false,
+            dialog: false,
         }
     },
 
@@ -28,21 +32,65 @@ export default {
     methods: {
         openModal(lesson) {
             this.selectedLesson = lesson;
-            this.showModal = true;
+            this.dialog = true;
             console.log(this.selectedLesson)
+        },
+        transformTime(dateTime) {
+            let date = new Date(dateTime);
+            let hours = date.getHours();
+            let minutes = date.getMinutes();
+            return hours + ":" + minutes;        
         }
     }
 }
 </script>
 
 <style scoped>
-.content {
-    background-color: blue;
-    color: white;
-    cursor: pointer;
+
+.btn-lesson {
+    margin-top: 10px;
+    width: 100%;
+    overflow: hidden;    
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-between;
 }
 
-p {
-    margin-bottom: 0.5rem;
+.lesson-name {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: absolute;
+    left: 0;
+    right: 30px;
 }
+
+.time {
+    position: absolute;
+    right: 0;
+    display: flex;
+    align-items: flex-end;
+}
+
+/* .d-flex {
+    
+}
+.justify-space-between {
+    
+}
+.align-center {
+    
+}
+.align-end {
+    align-items: flex-end;
+}
+.text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.flex-grow-1 {
+    flex-grow: 1;
+} */
 </style>

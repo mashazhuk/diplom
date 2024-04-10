@@ -23,4 +23,4 @@ Route::resources([
     'lessons' => LessonController::class,
 ]);
 
-Route::get('lessonsByDate', [LessonController::class, 'getLessonsByDate']);
+Route::get('sorted-lessons', [LessonController::class, 'getSortedLessons']);

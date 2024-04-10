@@ -13,7 +13,7 @@ class LessonController extends Controller
         return LessonResource::collection(Lesson::all());
     }
 
-    public function getLessonsByDate() {
+    public function getSortedLessons() {
         $lessons = Lesson::all();
         $lessonsByDate = $lessons->groupBy(function ($item) {
             return Carbon::parse($item->start_time)->format('Y-m-d');
@@ -25,15 +25,4 @@ class LessonController extends Controller
 
         return response()->json($lessonsByDate);
     }
-
-    // public function sortedLessons() {
-    //     $lessonsByDate = $lessons->groupBy(function ($item) {
-    //         return Carbon::parse($item->start_time)->format('Y-m-d');
-    //     })->map(function ($lessonsOnSameDate) {
-    //         return $lessonsOnSameDate->sortBy(function ($lesson) {
-    //             return Carbon::parse($lesson->start_time)->format('H:i:s');
-    //         });
-    //     });
-        
-    // }
 }

@@ -11,10 +11,11 @@
     "bootstrap": "^5.3.3",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0",
-    "vuetify": "^3.5.9",
+    "vuetify": "^3.5.15",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
+    "@mdi/font": "^7.4.47",
     "axios": "^1.6.8",
     "laravel-vite-plugin": "^1.0.0",
     "sass": "^1.71.1",

@@ -1,6 +1,7 @@
 import Home from "@/pages/Home.vue";
 import WeekScheduleStudent from "@/pages/WeekScheduleStudent.vue";
 import DailyScheduleTeacher from "@/pages/DailyScheduleTeacher.vue";
+import Login from "@/pages/Login.vue";
 
 const routes = [
     {
@@ -16,6 +17,11 @@ const routes = [
     {
         path: '/daily-sch-teacher',
         component: DailyScheduleTeacher
+    },
+
+    {
+        path: '/login',
+        component: Login
     }
 ];
 
